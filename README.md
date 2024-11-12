@@ -10,6 +10,8 @@ Resolución del TP para el curso _ITBA MLE en AWS_.
 
 ...
 
+[Link](https://www.kaggle.com/datasets/sriharshaeedala/airline-delay/) a la data utilizada para el proyecto.
+
 ## Código
 
 ...
