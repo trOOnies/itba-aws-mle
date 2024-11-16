@@ -1,2 +1,4 @@
+nbformat
 numpy
 pandas
+plotly
