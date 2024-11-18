@@ -3,12 +3,13 @@
 import argparse
 import glob
 import json
-import logging
 import os
 import pandas as pd
 import pickle as pkl
 import random
 import xgboost
+
+TARGET_COL = "RainTomorrow"
 
 
 def parse_args():
@@ -49,13 +50,13 @@ def main():
 
     print("Loading train dataframe...")
     train_X = pd.read_csv(train_path)
-    train_y = train_X[["RainTomorrow"]]
-    train_X = train_X.drop("RainTomorrow", axis=1)
+    train_y = train_X[[TARGET_COL]]
+    train_X = train_X.drop(TARGET_COL, axis=1)
 
     print("Loading val dataframe...")
     val_X = pd.read_csv(val_path)
-    val_y = val_X[["RainTomorrow"]]
-    val_X = val_X.drop("RainTomorrow", axis=1)
+    val_y = val_X[[TARGET_COL]]
+    val_X = val_X.drop(TARGET_COL, axis=1)
 
     # Modify data format and type
     train_X = train_X.values
@@ -86,16 +87,9 @@ def main():
     bst = xgboost.train(
         params=params,
         dtrain=dtrain,
-        evals=[(dtrain, "train"), (dval, "val")],
+        evals=[(dtrain, "train"), (dval, "validation")],
         num_boost_round=args.num_round,
     )
-
-    # Evaluate the model
-    eval_results = bst.eval(dval)
-    validation_auc = eval_results["validation-auc"]
-
-    # Log the metric
-    logging.info(f"validation-auc:{validation_auc}")
 
     # Save model
     model_path = os.path.join(os.environ.get("SM_MODEL_DIR"), "model.bin")
