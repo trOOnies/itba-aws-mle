@@ -1,0 +1,1088 @@
+[
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"Location\",\"Evaporation\",\"Sunshine\",\"Cloud9am\",\"Cloud3pm\",\"Date\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "RainTomorrow"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_MISSING",
+        "Value": "string",
+        "TargetColumn": "RainTomorrow"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "MaxTemp"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_MISSING",
+        "Value": "double",
+        "TargetColumn": "MaxTemp"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "MinTemp"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_MISSING",
+        "Value": "double",
+        "TargetColumn": "MinTemp"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "Temp9am"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_MISSING",
+        "Value": "double",
+        "TargetColumn": "Temp9am"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "WindSpeed9am"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_MISSING",
+        "Value": "double",
+        "TargetColumn": "WindSpeed9am"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "RainToday"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_MISSING",
+        "Value": "double",
+        "TargetColumn": "RainToday"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "Rainfall"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_MISSING",
+        "Value": "double",
+        "TargetColumn": "Rainfall"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "Humidity9am"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_MISSING",
+        "Value": "double",
+        "TargetColumn": "Humidity9am"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "WindSpeed3pm"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_MISSING",
+        "Value": "double",
+        "TargetColumn": "WindSpeed3pm"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "Temp3pm"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_MISSING",
+        "Value": "double",
+        "TargetColumn": "Temp3pm"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "Humidity3pm"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_MISSING",
+        "Value": "double",
+        "TargetColumn": "Humidity3pm"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "FLAG_COLUMN_FROM_PATTERN",
+      "Parameters": {
+        "falseString": "0",
+        "pattern": "Yes",
+        "sourceColumn": "RainToday",
+        "targetColumn": "RainToday_flagged",
+        "trueString": "1"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "double",
+        "sourceColumn": "RainToday_flagged"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FLAG_COLUMN_FROM_PATTERN",
+      "Parameters": {
+        "falseString": "0",
+        "pattern": "Yes",
+        "sourceColumn": "RainTomorrow",
+        "targetColumn": "RainTomorrow_flagged",
+        "trueString": "1"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CHANGE_DATA_TYPE",
+      "Parameters": {
+        "columnDataType": "double",
+        "sourceColumn": "RainTomorrow_flagged"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"RainToday\",\"RainTomorrow\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "MOVE_TO_START",
+      "Parameters": {
+        "sourceColumn": "RainTomorrow_flagged",
+        "targetIndex": "NaN"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"E\":\"1\",\"ENE\":\"0.9238795325\",\"NE\":\"0.7071067812\",\"NNE\":\"0.3826834324\",\"N\":\"0\",\"NNW\":\"-0.3826834324\",\"NW\":\"-0.7071067812\",\"WNW\":\"-0.9238795325\",\"W\":\"-1\",\"WSW\":\"-0.9238795325\",\"SW\":\"-0.7071067812\",\"SSW\":\"-0.3826834324\",\"S\":\"0\",\"SSE\":\"0.3826834324\",\"SE\":\"0.7071067812\",\"ESE\":\"0.9238795325\"}",
+        "deleteOtherRows": "false",
+        "keepOthers": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "CUSTOM_VALUES",
+        "other": "0",
+        "sourceColumn": "WindGustDir",
+        "targetColumn": "WindGustDir_east"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"E\":\"1\",\"ENE\":\"0.9238795325\",\"NE\":\"0.7071067812\",\"NNE\":\"0.3826834324\",\"N\":\"0\",\"NNW\":\"-0.3826834324\",\"NW\":\"-0.7071067812\",\"WNW\":\"-0.9238795325\",\"W\":\"-1\",\"WSW\":\"-0.9238795325\",\"SW\":\"-0.7071067812\",\"SSW\":\"-0.3826834324\",\"S\":\"0\",\"SSE\":\"0.3826834324\",\"SE\":\"0.7071067812\",\"ESE\":\"0.9238795325\"}",
+        "deleteOtherRows": "false",
+        "keepOthers": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "CUSTOM_VALUES",
+        "other": "0",
+        "sourceColumn": "WindDir9am",
+        "targetColumn": "WindDir9am_east"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"E\":\"1\",\"ENE\":\"0.9238795325\",\"NE\":\"0.7071067812\",\"NNE\":\"0.3826834324\",\"N\":\"0\",\"NNW\":\"-0.3826834324\",\"NW\":\"-0.7071067812\",\"WNW\":\"-0.9238795325\",\"W\":\"-1\",\"WSW\":\"-0.9238795325\",\"SW\":\"-0.7071067812\",\"SSW\":\"-0.3826834324\",\"S\":\"0\",\"SSE\":\"0.3826834324\",\"SE\":\"0.7071067812\",\"ESE\":\"0.9238795325\"}",
+        "deleteOtherRows": "false",
+        "keepOthers": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "CUSTOM_VALUES",
+        "other": "0",
+        "sourceColumn": "WindDir3pm",
+        "targetColumn": "WindDir3pm_east"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"E\":\"0\",\"ENE\":\"0.3826834324\",\"NE\":\"0.7071067812\",\"NNE\":\"0.9238795325\",\"N\":\"1\",\"NNW\":\"0.9238795325\",\"NW\":\"0.7071067812\",\"WNW\":\"0.3826834324\",\"W\":\"0\",\"WSW\":\"-0.3826834324\",\"SW\":\"-0.7071067812\",\"SSW\":\"-0.9238795325\",\"S\":\"-1\",\"SSE\":\"-0.9238795325\",\"SE\":\"-0.7071067812\",\"ESE\":\"-0.3826834324\"}",
+        "deleteOtherRows": "false",
+        "keepOthers": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "CUSTOM_VALUES",
+        "other": "0",
+        "sourceColumn": "WindGustDir",
+        "targetColumn": "WindGustDir_north"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"E\":\"0\",\"ENE\":\"0.3826834324\",\"NE\":\"0.7071067812\",\"NNE\":\"0.9238795325\",\"N\":\"1\",\"NNW\":\"0.9238795325\",\"NW\":\"0.7071067812\",\"WNW\":\"0.3826834324\",\"W\":\"0\",\"WSW\":\"-0.3826834324\",\"SW\":\"-0.7071067812\",\"SSW\":\"-0.9238795325\",\"S\":\"-1\",\"SSE\":\"-0.9238795325\",\"SE\":\"-0.7071067812\",\"ESE\":\"-0.3826834324\"}",
+        "deleteOtherRows": "false",
+        "keepOthers": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "CUSTOM_VALUES",
+        "other": "0",
+        "sourceColumn": "WindDir9am",
+        "targetColumn": "WindDir9am_north"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "CATEGORICAL_MAPPING",
+      "Parameters": {
+        "categoryMap": "{\"E\":\"0\",\"ENE\":\"0.3826834324\",\"NE\":\"0.7071067812\",\"NNE\":\"0.9238795325\",\"N\":\"1\",\"NNW\":\"0.9238795325\",\"NW\":\"0.7071067812\",\"WNW\":\"0.3826834324\",\"W\":\"0\",\"WSW\":\"-0.3826834324\",\"SW\":\"-0.7071067812\",\"SSW\":\"-0.9238795325\",\"S\":\"-1\",\"SSE\":\"-0.9238795325\",\"SE\":\"-0.7071067812\",\"ESE\":\"-0.3826834324\"}",
+        "deleteOtherRows": "false",
+        "keepOthers": "false",
+        "mapType": "NUMERIC",
+        "mappingOption": "CUSTOM_VALUES",
+        "other": "0",
+        "sourceColumn": "WindDir3pm",
+        "targetColumn": "WindDir3pm_north"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"WindGustDir\",\"WindDir9am\",\"WindDir3pm\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "MinTemp",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "MaxTemp",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "Rainfall",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "WindGustDir_north",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "WindGustDir_east",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "WindGustSpeed",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "WindDir9am_north",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "WindDir9am_east",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "WindDir3pm_north",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "WindDir3pm_east",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "WindSpeed9am",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "WindSpeed3pm",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "Humidity9am",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "Humidity3pm",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "Pressure9am",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "Pressure3pm",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "Temp9am",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REPLACE_OUTLIERS",
+      "Parameters": {
+        "maxValue": "95",
+        "minValue": "5",
+        "outlierStrategy": "IQR",
+        "replaceType": "WINSORIZE_VALUES",
+        "sourceColumn": "Temp3pm",
+        "threshold": "1.5"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "MinTemp",
+        "strategy": "Z_SCORE",
+        "targetColumn": "MinTemp_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "MaxTemp",
+        "strategy": "Z_SCORE",
+        "targetColumn": "MaxTemp_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "Rainfall",
+        "strategy": "Z_SCORE",
+        "targetColumn": "Rainfall_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "WindGustDir_north",
+        "strategy": "Z_SCORE",
+        "targetColumn": "WindGustDir_north_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "WindGustDir_east",
+        "strategy": "Z_SCORE",
+        "targetColumn": "WindGustDir_east_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "WindGustSpeed",
+        "strategy": "Z_SCORE",
+        "targetColumn": "WindGustSpeed_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "WindDir9am_north",
+        "strategy": "Z_SCORE",
+        "targetColumn": "WindDir9am_north_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "WindDir9am_east",
+        "strategy": "Z_SCORE",
+        "targetColumn": "WindDir9am_east_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "WindDir3pm_north",
+        "strategy": "Z_SCORE",
+        "targetColumn": "WindDir3pm_north_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "WindDir3pm_east",
+        "strategy": "Z_SCORE",
+        "targetColumn": "WindDir3pm_east_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "WindSpeed9am",
+        "strategy": "Z_SCORE",
+        "targetColumn": "WindSpeed9am_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "WindSpeed3pm",
+        "strategy": "Z_SCORE",
+        "targetColumn": "WindSpeed3pm_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "Humidity9am",
+        "strategy": "Z_SCORE",
+        "targetColumn": "Humidity9am_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "Humidity3pm",
+        "strategy": "Z_SCORE",
+        "targetColumn": "Humidity3pm_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "Pressure9am",
+        "strategy": "Z_SCORE",
+        "targetColumn": "Pressure9am_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "Pressure3pm",
+        "strategy": "Z_SCORE",
+        "targetColumn": "Pressure3pm_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "Temp9am",
+        "strategy": "Z_SCORE",
+        "targetColumn": "Temp9am_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "Temp3pm",
+        "strategy": "Z_SCORE",
+        "targetColumn": "Temp3pm_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "NORMALIZATION",
+      "Parameters": {
+        "sourceColumn": "RainToday_flagged",
+        "strategy": "Z_SCORE",
+        "targetColumn": "RainToday_flagged_normalized column"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"MinTemp\",\"MaxTemp\",\"Rainfall\",\"WindGustDir_north\",\"WindGustDir_east\",\"WindGustSpeed\",\"WindDir9am_north\",\"WindDir9am_east\",\"WindDir3pm_north\",\"WindDir3pm_east\",\"WindSpeed9am\",\"WindSpeed3pm\",\"Humidity9am\",\"Humidity3pm\",\"Pressure9am\",\"Pressure3pm\",\"Temp9am\",\"Temp3pm\",\"RainToday_flagged\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "RainTomorrow_flagged",
+        "targetColumn": "RainTomorrow"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "MinTemp_normalized column",
+        "targetColumn": "MinTemp"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "MaxTemp_normalized column",
+        "targetColumn": "MaxTemp"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "Rainfall_normalized column",
+        "targetColumn": "Rainfall"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "WindGustDir_north_normalized column",
+        "targetColumn": "WindGustDir_north"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "WindGustDir_east_normalized column",
+        "targetColumn": "WindGustDir_east"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "WindGustSpeed_normalized column",
+        "targetColumn": "WindGustSpeed"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "WindDir9am_north_normalized column",
+        "targetColumn": "WindDir9am_north"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "WindDir9am_east_normalized column",
+        "targetColumn": "WindDir9am_east"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "WindDir3pm_north_normalized column",
+        "targetColumn": "WindDir3pm_north"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "WindDir3pm_east_normalized column",
+        "targetColumn": "WindDir3pm_east"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "WindSpeed9am_normalized column",
+        "targetColumn": "WindSpeed9am"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "WindSpeed3pm_normalized column",
+        "targetColumn": "WindSpeed3pm"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "Humidity9am_normalized column",
+        "targetColumn": "Humidity9am"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "Humidity3pm_normalized column",
+        "targetColumn": "Humidity3pm"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "Pressure9am_normalized column",
+        "targetColumn": "Pressure9am"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "Pressure3pm_normalized column",
+        "targetColumn": "Pressure3pm"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "Temp9am_normalized column",
+        "targetColumn": "Temp9am"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "Temp3pm_normalized column",
+        "targetColumn": "Temp3pm"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "RainToday_flagged_normalized column",
+        "targetColumn": "RainToday"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "MinTemp"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "MaxTemp"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "Rainfall"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "WindGustDir_north"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "WindGustDir_east"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "WindGustSpeed"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "WindDir9am_north"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "WindDir9am_east"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "WindDir3pm_north"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "WindDir3pm_east"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "WindSpeed9am"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "WindSpeed3pm"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "Humidity9am"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "Humidity3pm"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "Pressure9am"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "Pressure3pm"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "Temp9am"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_AVERAGE",
+      "Parameters": {
+        "sourceColumn": "Temp3pm"
+      }
+    }
+  }
+]
