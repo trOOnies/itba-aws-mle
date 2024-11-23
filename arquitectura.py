@@ -7,6 +7,7 @@ from diagrams.aws.general import InternetAlt2, User, Users
 from diagrams.aws.ml import SagemakerNotebook, SagemakerTrainingJob, SagemakerModel
 from diagrams.aws.network import APIGateway
 from diagrams.aws.storage import S3
+from diagrams.custom import Custom
 
 with Diagram("Arquitectura", show=False):
     consumers = Users("Consumidores")
@@ -14,6 +15,7 @@ with Diagram("Arquitectura", show=False):
     mle = User("MLE")
 
     source = InternetAlt2("Australia Meteorology site")
+    github = Custom("GitHub", "docs/github_logo.png")
 
     with Cluster("Desarrollo"):
         sm_note = SagemakerNotebook("SM Studio Classic")
@@ -32,6 +34,7 @@ with Diagram("Arquitectura", show=False):
         qs = Quicksight("Dashboard")
 
     mle >> sm_note >> sm_tjob >> sm_model
+    sm_note >> Edge() << github
     (consumers, mle) >> Edge() << api_gw >> Edge() << lambda_f >> Edge() << sm_model
     analysts >> Edge() << qs
 
