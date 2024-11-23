@@ -6,7 +6,7 @@ import os
 import pickle as pkl
 import xgboost as xgb
 
-from sagemaker_containers.beta.framework import content_types, encoders, worker
+from sagemaker_containers.beta.framework import content_types, worker
 from sagemaker_xgboost_container import encoder as xgb_encoders
 
 

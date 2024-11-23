@@ -1,12 +1,9 @@
 """Script para el training del modelo."""
 
 import argparse
-import glob
-import json
 import os
 import pandas as pd
 import pickle as pkl
-import random
 import xgboost
 
 TARGET_COL = "RainTomorrow"
