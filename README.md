@@ -4,29 +4,15 @@
 
 Alumno: Scasso, Facundo M.
 
-Resolución del TP para el curso _ITBA MLE en AWS_.
+Resolución del TP para el curso _ITBA MLE en AWS_. Junto a la entrega de este repositorio se adjunta un archivo PDF con el paso a paso de la resolución.
 
-## Temática seleccionada
-
-Context
-
-Ever wondered if you should carry an umbrella tomorrow? With this dataset, you can predict next-day rain by training classification models on the target variable RainTomorrow.
-Content
-
-This dataset comprises about 10 years of daily weather observations from numerous locations across Australia.
-
-RainTomorrow is the target variable to predict. It answers the crucial question: will it rain the next day? (Yes or No).
-This column is marked 'Yes' if the rain for that day was 1mm or more.
+## Dataset
 
 [Link](https://www.kaggle.com/datasets/jsphyg/weather-dataset-rattle-package) a la data utilizada para el proyecto (Copyright Commonwealth of Australia 2010, Bureau of Meteorology).
 
-## Código
+## Arquitectura
 
-...
-
-## Stack tecnológico
-
-...
+<img class="center" src="arquitectura.png" alt="Arquitectura de la solución"></img>
 
 ## Licencia
 
