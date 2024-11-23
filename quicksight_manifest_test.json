@@ -2,7 +2,7 @@
     "fileLocations": [
         {
             "URIs": [
-                "s3://sagemaker-us-east-1-335415446667/australia-rain-predictions/australia-rain-test-predicted.csv"
+                "s3://itba-mle-australia-rain/quicksight/australia-rain-test-predicted.csv"
             ]
         }
     ],
